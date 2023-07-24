@@ -49,6 +49,14 @@ def find_book():
     book = cursor.fetchone()
     print(book)
 
+#This displays every entry of the database for debug purposes.
+def display_all():
+    cursor.execute('''SELECT * FROM books''')
+    books = cursor.fetchall()
+    for book in books:
+        print(book)
+
+
 db = sqlite3.connect('data/ebookstore.db')
 
 cursor = db.cursor()
@@ -79,6 +87,9 @@ while True:
 
     if mode == 4:
         find_book()
+
+    if mode == 5:
+        display_all()
 
     if mode == 0:
         exit()
